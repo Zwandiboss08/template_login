@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
+import 'package:template_login/logout_screen.dart';
 import 'controller/login controller/login_contorller.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    GetMaterialApp(
       home: loginScreen(),
       debugShowCheckedModeBanner: false,
     ),
@@ -104,9 +105,8 @@ class loginScreen extends StatelessWidget {
                         children: [
                           Checkbox(
                               value: controller.isChecked.value,
-                              onChanged: (context) {
-                                controller.handleRemeberme(
-                                    controller.isChecked.value);
+                              onChanged: (valueBaru) {
+                                controller.handleRemeberme(valueBaru);
                               }),
                           Text(
                             'Remember Me',
@@ -114,6 +114,19 @@ class loginScreen extends StatelessWidget {
                           )
                         ],
                       ),
+                      Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: ElevatedButton(
+                            child: const Text('Login'),
+                            onPressed: () {
+                              if (controller.isAllPass) Get.to(LogoutPage());
+                            },
+                          )),
                     ],
                   ),
                 )),
